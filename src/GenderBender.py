@@ -19,7 +19,7 @@ def bendFile(fileName, year = 2018,
     rawContents = origFile.read()
 
     # bend the contents
-    bentContents = bend(rawContents, year)
+    bentContents = bend(rawContents, int(year))
 
     # get rid of the type part of the file name
     fileName = fileName.split(".")[0]
