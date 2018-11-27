@@ -88,3 +88,4 @@ horseman,horsewoman
 horsemen,horsewomen
 businessman,businesswoman
 businessmen,businesswomen
+mankind,womankind
