@@ -235,7 +235,7 @@ def flip(rawContents, year = 2018):
 
     genDict = makeGeneralDict()
     nameDict = nameDictGenerator(contents, year)
-    print(nameDict)
+    # print(nameDict)
 
     # replace any words
     for i in range(len(contents)):
@@ -253,7 +253,7 @@ def flip(rawContents, year = 2018):
 
 
     output = " ".join(contents)    
-    return output
+    return output 
 
 
 def dictInsert(word1, word2, d):
@@ -293,6 +293,8 @@ def dictInsert(word1, word2, d):
                     d[word1 + quotation] = word2 + quotation
                     d[quotation + word1] = quotation + word2
                     d[quotation + word1 + quotation] = quotation + word2 + quotation
+
+
 
 
 
@@ -366,6 +368,6 @@ def generateExcerpts(books):
         corpus, title, author = books[i]
         flipExcerpt(corpus, title, author, str(i))
 
-generateExcerpts(books)
+# generateExcerpts(books)
 
 
