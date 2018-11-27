@@ -4,11 +4,11 @@ from PronounDictMaker import getPronounDict
 from NameDictMaker import getNameDict
 
 
-# genderbends a full text
+# genderbends the contents of a text file
 # INPUT: the name of the file, optionally the year it was written, filepaths
 # for input and output files
 # OUTPUT: nothing, creates the genderbent text file in the desired filepath 
-def bendFullText(fileName, year = 2018, 
+def bendTextFile(fileName, year = 2018, 
     inputFilePath = "../original_texts/", 
     ouputFilePath = "../bent_texts/"):
 
@@ -44,7 +44,6 @@ def bend(rawContents, year):
     # get the dictionaries
     pronounDict = getPronounDict()
     nameDict = getNameDict(wordArr, year)
-    print(nameDict)
 
     # replace the words
     replaceWords(wordArr, nameDict, pronounDict)
@@ -100,4 +99,4 @@ def replaceWords(wordArr, nameDict, pronounDict):
         if(word in nameDict):
             wordArr[i] = nameDict[word]
 
-bendFullText("oliver_twist.txt", 1880)
+bendTextFile("pride_and_prejudice.txt", 1880)
