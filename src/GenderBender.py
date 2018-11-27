@@ -13,8 +13,8 @@ def bendFullText(fileName, year = 2018,
     ouputFilePath = "../bent_texts/"):
 
     # get and read the original text
-    origText = open(inputFilePath + fileName,"r")
-    rawContents = origText.read()
+    origFile = open(inputFilePath + fileName,"r")
+    rawContents = origFile.read()
 
     # bend the contents
     bentContents = bend(rawContents)
@@ -23,9 +23,9 @@ def bendFullText(fileName, year = 2018,
     fileName = fileName.split(".")[0]
 
     # create a new file and put the contents in there
-    bentText= open(ouputFilePath + fileName + "_flipped.txt","w+")
-    bentText.write(bentContents)
-    bentText.close()
+    bentFile= open(ouputFilePath + fileName + "_flipped.txt","w+")
+    bentFile.write(bentContents)
+    bentFile.close()
 
 # def bendExcerpt(fileName, Title, Author, desiredLength= 30000, year = 2018):
 
@@ -83,7 +83,6 @@ def seperateWords(rawContents):
             wordArr.append(char)
             wordArr.append("")
 
-    print(wordArr)
     return wordArr
 
 # replaces every male word with a female one and vice versa
@@ -99,10 +98,6 @@ def replaceWords(wordArr, nameDict, pronounDict):
             wordArr[i] = pronounDict[word]
         if(word in nameDict):
             wordArr[i] = nameDict[word]
-
-bendFullText("harry_potter.txt")
-
-
 
 
 
