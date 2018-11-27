@@ -53,7 +53,8 @@ lord,lady
 male,female
 manservant,maidservant
 marquis,marchioness
-mr,ms
+ms,mr,o
+mr,mrs
 nephew,niece
 postman,postwoman
 postmaster,postmistress
@@ -70,7 +71,7 @@ steward,stewardess
 uncle,aunt
 widower,widow
 madam,mister
-his,hers
+his,her
 aunt,uncle
 mother,father
 mom,dad

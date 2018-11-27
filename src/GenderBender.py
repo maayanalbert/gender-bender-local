@@ -44,6 +44,7 @@ def bend(rawContents, year):
     # get the dictionaries
     pronounDict = getPronounDict()
     nameDict = getNameDict(wordArr, year)
+    print(nameDict)
 
     # replace the words
     replaceWords(wordArr, nameDict, pronounDict)
@@ -66,7 +67,7 @@ def seperateWords(rawContents):
         manLen = len("man")
         womanLen = len("woman")
         if(i < len(rawContents)-manLen and 
-            (i<2 or rawContents[i-2:i] != "wo") and
+            (i<2 or rawContents[i-2:i] != "wo" and rawContents[i-2:i] != "hu") and
             (rawContents[i:i+manLen] == "man" or rawContents[i:i+manLen] == "men")):
                 wordArr.append(char)
 
@@ -98,3 +99,5 @@ def replaceWords(wordArr, nameDict, pronounDict):
             wordArr[i] = pronounDict[word]
         if(word in nameDict):
             wordArr[i] = nameDict[word]
+
+bendFullText("oliver_twist.txt", 1880)

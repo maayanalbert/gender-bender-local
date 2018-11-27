@@ -60,6 +60,10 @@ def addPairToDict(pair, pronounDict):
 # OUTPUT: the plural of that word
 def getPlural(word):
 
+    #if the word is a mr, mrs, etc, skip it
+    if(word ==  "mr" or word == "ms" or word == "mrs"):
+        return word
+
     # if the word ends in "ss", as in "countess", add "es"
     if(len(word) > 2 and word[-2:] == "ss"):
         return word + "es"
@@ -73,15 +77,20 @@ def getPlural(word):
 # OUTPUT: 
 def createEntries(word, oppword, pronounDict):
 
-    # enter the original word
-    pronounDict[word] = oppword
+    
+    # account for the word in different capitalizations
+    words = [word, word.capitalize(), word.upper()]
+    oppWords = [oppword, oppword.capitalize(), oppword.upper()]
 
-    # enter the capital version
-    pronounDict[word.capitalize()] = oppword.capitalize()
 
-    # get the plural and enter that too
-    plural = getPlural(word)
-    oppPlural = getPlural(oppword)
+    for i in range(len(words)):
+        word = words[i]
+        oppword = oppWords[i]
+        pronounDict[word] = oppword
 
-    pronounDict[plural] = oppPlural
-    pronounDict[plural.capitalize()] = oppPlural.capitalize()
+        # add the plural version of the word as well
+        # make sure its uppercase if the rest of the word is
+        if(i == len(words)-1):
+            pronounDict[getPlural(word).upper()] = getPlural(oppword).upper()
+        else:
+            pronounDict[getPlural(word)] = getPlural(oppword)
