@@ -17,7 +17,7 @@ def bendFullText(fileName, year = 2018,
     rawContents = origFile.read()
 
     # bend the contents
-    bentContents = bend(rawContents)
+    bentContents = bend(rawContents, year)
 
     # get rid of the type part of the file name
     fileName = fileName.split(".")[0]
@@ -34,16 +34,16 @@ def bendFullText(fileName, year = 2018,
 ####################################################################
 
 # genderbends the text
-# INPUT: original contents
-# OUTPUT: genderbent contents
-def bend(rawContents):
+# INPUT: original string of contents, the year it was written
+# OUTPUT: a string of genderbent contents
+def bend(rawContents, year):
     
     # get the contents in a parseable form
     wordArr = seperateWords(rawContents)
 
     # get the dictionaries
     pronounDict = getPronounDict()
-    nameDict = getNameDict(wordArr)
+    nameDict = getNameDict(wordArr, year)
 
     # replace the words
     replaceWords(wordArr, nameDict, pronounDict)
@@ -98,6 +98,3 @@ def replaceWords(wordArr, nameDict, pronounDict):
             wordArr[i] = pronounDict[word]
         if(word in nameDict):
             wordArr[i] = nameDict[word]
-
-
-
