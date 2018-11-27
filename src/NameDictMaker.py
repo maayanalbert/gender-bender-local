@@ -1,4 +1,4 @@
-from PronounDictMaker import createEntries
+from pronounDictMaker import createEntries
 
 # creates a dictionary of names mapped to their opposite gendered equivalents
 # INPUT: an array of all the words in the text, the year the text was written

@@ -1,16 +1,18 @@
 import string
 
-from PronounDictMaker import getPronounDict
-from NameDictMaker import getNameDict
+from pronounDictMaker import getPronounDict
+from nameDictMaker import getNameDict
 
+defaultInputPath = "../original_texts/"
+defaultOutputPath = "../bent_texts/"
 
-# genderbends the contents of a text file
+# genderbends the contents of a txt file
 # INPUT: the name of the file, optionally the year it was written, filepaths
 # for input and output files
 # OUTPUT: nothing, creates the genderbent text file in the desired filepath 
-def bendTextFile(fileName, year = 2018, 
-    inputFilePath = "../original_texts/", 
-    ouputFilePath = "../bent_texts/"):
+def bendFile(fileName, year = 2018, 
+    inputFilePath = defaultInputPath, 
+    outputFilePath = defaultOutputPath):
 
     # get and read the original text
     origFile = open(inputFilePath + fileName,"r")
@@ -23,15 +25,16 @@ def bendTextFile(fileName, year = 2018,
     fileName = fileName.split(".")[0]
 
     # create a new file and put the contents in there
-    bentFile= open(ouputFilePath + fileName + "_flipped.txt","w+")
+    bentFile= open(outputFilePath + fileName + "_genderbent.txt","w+")
     bentFile.write(bentContents)
     bentFile.close()
 
-# def bendExcerpt(fileName, Title, Author, desiredLength= 30000, year = 2018):
-
-# def bendManualInput(text, year = 2018):
-
-####################################################################
+# genderbends a string input and returns the results
+# INPUT: a string of the original text
+# OUTPUT: the genderbent text
+def bendString(originalText, year = 2018):
+    bentText = bend(originalText, year)
+    return bentText
 
 # genderbends the text
 # INPUT: original string of contents, the year it was written
@@ -42,8 +45,11 @@ def bend(rawContents, year):
     wordArr = seperateWords(rawContents)
 
     # get the dictionaries
+    print("Getting pronoun dictionary...")
     pronounDict = getPronounDict()
+    print("Getting name dictionary...")
     nameDict = getNameDict(wordArr, year)
+    print("Replacing words...")
 
     # replace the words
     replaceWords(wordArr, nameDict, pronounDict)
@@ -98,5 +104,3 @@ def replaceWords(wordArr, nameDict, pronounDict):
             wordArr[i] = pronounDict[word]
         if(word in nameDict):
             wordArr[i] = nameDict[word]
-
-bendTextFile("pride_and_prejudice.txt", 1880)
